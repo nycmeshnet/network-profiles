@@ -1,0 +1,50 @@
+# Beware this file is NOT supposed to be edited by the end user, modify /etc/config/lime instead
+# If the same option or list is defined both in /etc/config/lime and lime-defaults file, the former will prevail
+# Beware this file is not supposed to store interface specific configuration, like "config net eth0"
+
+# Read the documentation in /docs directory
+# and on http://libremesh.org
+
+config lime 'system'
+        option hostname 'NYCMesh-%M4%M5%M6'
+        option domain 'nycmesh'
+        option keep_on_upgrade 'libremesh base-files-essential /etc/sysupgrade.conf'
+
+config lime 'network'
+        option primary_interface 'eth0'
+        option main_ipv4_address '10.202.%N1.0/24'
+        option anygw_dhcp_start '2'
+        option anygw_dhcp_limit '0'
+        option main_ipv6_address '2012:0:0::/48'
+        option bmx6_mtu '1500'
+        list protocols 'ieee80211s'
+        list protocols 'adhoc'
+        list protocols 'lan'
+        list protocols 'anygw'
+        list protocols 'bmx6:12:8021q'
+        list protocols 'batadv:%N1'
+        list resolvers '4.2.2.2'
+        list resolvers '141.1.1.1'
+        list resolvers '2001:470:20::2'
+        option bmx6_over_batman 'false'
+        option bmx6_pref_gw 'none'
+        option anygw_mac 'aa:aa:aa:%N1:%N2:aa'
+
+config lime 'wifi'
+        option channel_2ghz '6'
+        option channel_5ghz '165'
+        option country 'US'
+        option htmode_5ghz 'HT20'
+        option distance '1000'
+        list modes 'ap'
+        list modes 'apname'
+        list modes 'ieee80211s'
+        list modes 'adhoc'
+        option ap_ssid '--NYCMesh.net--'
+        option apname_ssid '--NYCMesh.net/%H--'
+        option adhoc_ssid 'qMp'
+        option adhoc_bssid '02:ca:ff:ee:ba:be'
+        option adhoc_mcast_rate_2ghz '24000'
+        option adhoc_mcast_rate_5ghz '6000'
+        option ieee80211s_mesh_fwding '0'
+        option ieee80211s_mesh_id 'qMp'
